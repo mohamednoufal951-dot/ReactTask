@@ -1,6 +1,5 @@
 import React, { useEffect,useState } from 'react';
 import '../css/HomeScreen.css'; 
-// import Dataset from '../Datasets/Dataset';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
@@ -23,20 +22,12 @@ export const HomeScreen = () => {
 
 const getDateAndTime = (isDate) => {
   const dateObj = new Date(isDate);
-
-  // Convert to IST (UTC + 5:30)
   const istTime = new Date(dateObj.getTime() + (5.5 * 60 * 60 * 1000));
 
-  // Day
   const day = istTime.getDate();
-
-  // Month Name
   const monthName = istTime.toLocaleString("en-US", { month: "long" });
-
-  // Year
   const year = istTime.getFullYear();
 
-  // Time HH:MM (24-hour format)
   const hours = String(istTime.getHours()).padStart(2, "0");
   const minutes = String(istTime.getMinutes()).padStart(2, "0");
   const timeIST = `${hours}:${minutes}`;
@@ -58,9 +49,6 @@ const getDateAndTime = (isDate) => {
           key={item.id}
           className="shadow-lg hover:shadow-2xl transition-all duration-300 p-4 bg-yellow-100 rounded-xl w-full sm:w-[300px] md:w-[350px] h-[auto] lg:w-[400px] h-[220px] flex flex-col items-center justify-between"
         >
-
-         
-          {/* Match Info */}
           <h1 className="text-2xl font-bold text-center text-gray-800 mb-2">
             {item.event_name}
           </h1>
@@ -68,7 +56,7 @@ const getDateAndTime = (isDate) => {
            <h4 className="text-2xl font-bold text-center text-gray-800 mb-3 w-[200px] ">
             {getDateAndTime(item.match_date)}
           </h4>
-          {/* Logos and Teams */}
+
           <div className="flex items-center justify-between w-full px-6">
             <div className=''>
                      <img

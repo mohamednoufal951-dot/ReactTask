@@ -2,7 +2,8 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { IoMdAdd } from "react-icons/io";
 import CustomButton from './CustomButton';
-import { Avatar } from '@mui/material';
+import { RxAvatar } from "react-icons/rx";
+
 
 const tabs = [
   { to: '/', label: 'Upcoming' },
@@ -10,6 +11,7 @@ const tabs = [
   { to: '/my-teams', label: 'My Teams' },
   { to: '/pick-captain', label: 'Pick Captain' },
 ];
+
 
 export const TopTabBar = () => {
   return (
@@ -20,12 +22,7 @@ export const TopTabBar = () => {
         
 
         <div className="flex flex-row items-center gap-3">
-          <img
-            src="https://cdn-icons-png.flaticon.com/512/25/25231.png"
-            alt="logo"
-            className="w-10 h-10 sm:w-14 sm:h-14"
-          />
-          {/* <Avatar alt="Remy Sharp" src="https://cdn-icons-png.flaticon.com/512/25/25231.png" /> */}
+          <RxAvatar size={50} color='#000'/>
           <h2 className="text-lg sm:text-xl font-semibold text-gray-800 text-center sm:text-left">
             MOHAMED NOUFAL
           </h2>

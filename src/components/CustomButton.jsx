@@ -1,4 +1,3 @@
-// src/components/CustomButton.jsx
 import React from "react";
 
 const CustomButton = ({

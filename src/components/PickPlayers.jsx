@@ -68,7 +68,12 @@ export const PickPlayers = () => {
                       if (Team1.includes(value)) {
                         setTeam1(Team1.filter((id) => id !== value));
                       } else {
-                        setTeam1([...Team1, value]);
+                             if (Team1.length < 11) {
+        setTeam1([...Team1, value]);
+      } else {
+        alert("Limit reached: Only 11 players allowed");
+      }
+
                       }
                     }}
                     className="float-right"
@@ -132,7 +137,11 @@ export const PickPlayers = () => {
                       if (Team2.includes(value)) {
                         setTeam2(Team2.filter((id) => id !== value));
                       } else {
-                        setTeam2([...Team2, value]);
+                         if (Team2.length < 11) {
+        setTeam2([...Team2, value]);
+      } else {
+        alert("Limit reached: Only 11 players allowed");
+      }
                       }
                     }}
                     className="float-right"

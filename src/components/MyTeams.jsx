@@ -14,7 +14,7 @@ export const MyTeams = () => {
 
   const localData = JSON.parse(localStorage.getItem('upcomingMatches')) || [];
 
-  // Load selected teams from localStorage on mount
+  
   useEffect(() => {
     const storedTeam1 = JSON.parse(localStorage.getItem('Team1')) || [];
     const storedTeam2 = JSON.parse(localStorage.getItem('Team2')) || [];
@@ -39,13 +39,13 @@ export const MyTeams = () => {
   }, []);
 
   return (
-    <div>
+    <div className="pb-10">
       <h1 className="text-[40px] font-bold text-center mt-4">Selected Players</h1>
        
     
 
       <div className="flex flex-row justify-center gap-4 mt-4">
-        {/* Team 1 */}
+
         <div className="flex flex-col items-center w-[75%]">
          <div className="flex flex-row items-center justify-center gap-2">
              <h2 className="font-bold w-[200px] text-3xl sm:w-[300px] text-center">
@@ -55,10 +55,8 @@ export const MyTeams = () => {
   variant="contained"
   sx={{ backgroundColor: 'green', minWidth: '50px', padding: '6px',marginLeft:10 }}
   onClick={() => {
-    
     console.log('Edit Team 1 clicked');
     navigate('/pick-players');
-    // open your modal or edit function here
   }}
 >
   <MdEditNote size={25} />
@@ -73,6 +71,11 @@ export const MyTeams = () => {
                   key={player.player_id}
                   className="bg-white shadow-lg rounded-xl p-4 w-[300px] hover:shadow-2xl transition-all"
                 >
+                 <div className="text-sm text-gray-600 text-center">
+  {localStorage.getItem("captain") === player.player_id && <p className='text-green-800 text-xl font-bold mb-4'>Captain</p>}
+  {localStorage.getItem("vicecaptain") === player.player_id && <p className='text-green-800 text-xl font-bold mb-4'>Vice Captain</p>}
+</div>
+
                   <div className="flex justify-center mb-3">
                     <img
                       src={player.team_logo}
@@ -92,14 +95,12 @@ export const MyTeams = () => {
           </div>
         </div>
 
-        {/* Divider */}
         <div className="bg-gray-200 w-[1px]"></div>
 
-        {/* Team 2 */}
         <div className="flex flex-col items-center w-[75%] ">
           <div className="flex flex-row items-center justify-center gap-2">
              <h2 className="font-bold w-[200px] text-3xl sm:w-[300px] text-center">
-                        {localData[0]?.t1_name || 'Team 1'}
+       {localData[0]?.t1_name || 'Team 1'}
               </h2>
         <Button
   variant="contained"
@@ -107,7 +108,7 @@ export const MyTeams = () => {
   onClick={() => {
     console.log('Edit Team 1 clicked');
     navigate('/pick-players');
-    // open your modal or edit function here
+
   }}
 >
   <MdEditNote size={25} />
@@ -116,11 +117,17 @@ export const MyTeams = () => {
           <div className="flex flex-wrap gap-4 justify-center mt-5">
             {playersList
               .filter((p) => Team2.includes(p.player_id))
-              .map((player) => (
-                <div
-                  key={player.player_id}
-                  className="bg-white shadow-lg rounded-xl p-4 w-[300px] hover:shadow-2xl transition-all"
-                >
+             .map((player) => (
+          <div
+            key={player.player_id}
+            className="bg-white shadow-lg rounded-xl p-4 w-[300px] hover:shadow-2xl transition-all"
+            >
+
+                   <div className="text-sm text-gray-600 text-center">
+  {localStorage.getItem("Team2Captain") === player.player_id && <p className='text-green-800 text-xl font-bold mb-4'>Captain</p>}
+  {localStorage.getItem("Team2vicecaptain") === player.player_id && <p className='text-green-800 text-xl font-bold mb-4'>Vice Captain</p>}
+</div>
+                  
                   <div className="flex justify-center mb-3">
                     <img
                       src={player.team_logo}
@@ -128,13 +135,13 @@ export const MyTeams = () => {
                       className="w-16 h-16 rounded-full"
                     />
                   </div>
-                  <h3 className="text-xl font-bold text-gray-800 text-center">{player.name}</h3>
-                  <p className="text-sm text-gray-600 text-center">
-                    {player.role} • {player.country}
-                  </p>
-                  <p className="text-md font-semibold text-blue-700 text-center mt-1">
-                    {player.team_name} ({player.team_short_name})
-                  </p>
+     <h3 className="text-xl font-bold text-gray-800 text-center">{player.name}</h3>
+            <p className="text-sm text-gray-600 text-center">
+              {player.role} • {player.country}
+             </p>
+              <p className="text-md font-semibold text-blue-700 text-center mt-1">
+                 {player.team_name} ({player.team_short_name})
+              </p>
                 </div>
               ))}
           </div>
